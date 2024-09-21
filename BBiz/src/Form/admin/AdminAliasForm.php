@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class AdminAliasForm extends AbstractType
 {
@@ -18,9 +19,15 @@ class AdminAliasForm extends AbstractType
         $builder
             ->add('aliasName', TextType::class, [
                 'label' => 'Alias name: ',
+                'constraints' => [
+                    new Assert\NotBlank(),
+                ]
             ])
             ->add('minimalRaiting', IntegerType::class, [
                 'label' => 'Minimal raiting: ',
+                'constraints' => [
+                    new Assert\NotBlank(),
+                ]
             ])
             ->add('button', SubmitType::class, [
                 'label' => 'Save',

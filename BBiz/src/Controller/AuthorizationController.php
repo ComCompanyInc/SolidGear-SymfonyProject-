@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
 class AuthorizationController extends AbstractController
@@ -23,7 +24,7 @@ class AuthorizationController extends AbstractController
     }
 
     #[Route('/registration', name: 'registration')]
-    public function registrationAction(Request $request): Response
+    public function registrationAction(Request $request, UserPasswordHasherInterface $passwordHasher): Response
     {
         $person = new Person();
         $user = new User();
@@ -68,7 +69,7 @@ class AuthorizationController extends AbstractController
             );
 
             $user->setLogin($login);
-            $user->setPassword($password);
+            $user->setPassword($passwordHasher->hashPassword(new User(), $password));
             $user->setAliasDirectory($aliasDirectory);
             $user->setMainRaiting($mainRaiting);
             $user->setMainRaiting($mainRaiting);

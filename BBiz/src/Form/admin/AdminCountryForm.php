@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class AdminCountryForm extends AbstractType
 {
@@ -16,6 +17,9 @@ class AdminCountryForm extends AbstractType
         $builder
             ->add('countryName', TextType::class, [
                 'label' => 'Country: ',
+                'constraints' => [
+                    new Assert\NotBlank(),
+                ]
             ])
             ->add('button', SubmitType::class, [
                 'label' => 'Save',

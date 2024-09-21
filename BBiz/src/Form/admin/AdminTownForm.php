@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class AdminTownForm extends AbstractType
 {
@@ -18,9 +19,15 @@ class AdminTownForm extends AbstractType
             ->add('countryDirectory', EntityType::class, [
                 'label' => 'Country: ',
                 'class' => CountryDirectory::class,
+                'constraints' => [
+                    new Assert\NotBlank(),
+                ]
             ])
             ->add('townName', TextType::class, [
                 'label' => 'Town: ',
+                'constraints' => [
+                    new Assert\NotBlank(),
+                ]
             ])
             ->add('button', SubmitType::class, [
                 'label' => 'Save',
