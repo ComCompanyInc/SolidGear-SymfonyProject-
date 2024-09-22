@@ -68,6 +68,13 @@ class AuthorizationController extends AbstractController
                 ['name' => $name, 'surname' => $surname, 'patronymic' => $patronymic, 'dateOfBirth' => $dateOfBirth]
             );
 
+            $existingUser = $this->entityManager->getRepository(User::class)->findOneBy(['login' => $login]);
+
+            if (isset($existingUser)) {
+                $this->addFlash('warning', 'This email is already taken.');
+                return new Response("<h1>Excuse, this email is already taken. Please try another one.</h1> </br> <a href = \"registration\">Back to registration page</a>");
+            }
+
             $user->setLogin($login);
             $user->setPassword($passwordHasher->hashPassword(new User(), $password));
             $user->setAliasDirectory($aliasDirectory);

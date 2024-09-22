@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+    <h1>Profile:</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>User - {{ raitingName }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ name }}</td> {# Имя пользователя #}
+            <td>{{ surname }}</td>
+            <td>{{ patronymic }}</td>
+            <td>{{ dateOfBirth | date }}</td>
+        </tr>
+        <tr>
+            <td>{{ country }}</td>
+            <td>{{ raiting }}</td>
+            <td>{{ registrationDate | date }}</td>
+            <td>{{ about }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

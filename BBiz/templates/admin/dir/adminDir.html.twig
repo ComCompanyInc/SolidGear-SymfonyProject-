@@ -1,4 +1,12 @@
-{{ form(adminCountryForm) }}
-{{ form(adminTownForm) }}
-{{ form(adminAliasForm) }}
-{# {{ form(adminDistrictForm) }} #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin directory{% endblock %}
+
+{% block body %}
+
+    {{ form(adminCountryForm) }}
+    {{ form(adminTownForm) }}
+    {{ form(adminAliasForm) }}
+    {# {{ form(adminDistrictForm) }} #}
+
+{% endblock %}

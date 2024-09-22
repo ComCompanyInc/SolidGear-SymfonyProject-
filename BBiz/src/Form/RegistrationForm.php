@@ -6,6 +6,7 @@ use App\Entity\CountryDirectory;
 use App\Entity\DistrictDirectory;
 use App\Entity\Person;
 use App\Entity\TownDirectory;
+use App\Validator\Constraint\MailValidator;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -67,6 +68,8 @@ class RegistrationForm extends AbstractType
             'label' => 'Login (Email): ',
             'constraints' => [
                 new Assert\NotBlank(),
+                new Assert\Email(),
+                new Assert\Length(['max' => 255]),
             ]
         ])
         ->add('password', PasswordType::class, [
